@@ -1,4 +1,4 @@
-package cn.doitedu;
+package cn.doitedu.other.test;
 
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.flink.api.common.RuntimeExecutionMode;
@@ -10,7 +10,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-public class Main {
+public class StateAnalysis {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
@@ -19,7 +19,7 @@ public class Main {
 
         env.setRuntimeMode(RuntimeExecutionMode.STREAMING);
 
-        DataStreamSource<String> ds = env.socketTextStream("doitedu", 9999);
+        DataStreamSource<String> ds = env.socketTextStream("localhost", 9999);
 
         SingleOutputStreamOperator<Integer> res = ds.keyBy(integer -> 1).map(new RichMapFunction<String, Integer>() {
             ValueState<Integer> state;
