@@ -34,7 +34,7 @@ public class PreFilterTest {
 
 
         tenv.executeSql(
-                "explain select \n" +
+                "select \n" +
                 "a.*,\n" +
                 "vx.* \n" +
                 "from a join vx   \n" +
